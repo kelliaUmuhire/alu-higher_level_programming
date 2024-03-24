@@ -1,10 +1,14 @@
 #!/usr/bin/python3
-"""Python script that fetchs."""
+'''a Python script that fetches a url'''
 
 
-import requests
-if __name__ == "__main__":
-    requ = requests.get('https://intranet.hbtn.io/status')
-    print("Body response:")
-    print("\t- type: {}".format(type(requ.text)))
-    print("\t- content: {}".format(requ.text))
+import urllib.request
+
+
+if __name__ == '__main__':
+    with urllib.request.urlopen('https://intranet.hbtn.io/status') as response:
+        content = response.read()
+        print("Body response:")
+        print("\t- type: {}".format(type(content)))
+        print("\t- content: {}".format(content))
+        print("\t- utf8 content: {}".format(content.decode("utf-8")))
